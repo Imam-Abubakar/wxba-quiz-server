@@ -18,7 +18,7 @@ const authRouter = require('./routes/auth.routes');
 const userRouter = require('./routes/user.routes');
 
 //routes
-app.get('/', (req, res) => res.json('Server is LIVE!!!'));
+app.get('/', (req, res) => res.json('Server is live'));
 app.use('/api', authRouter);
 app.use('/api', userRouter);
 app.get('/api/all-users', async (req, res) => {
