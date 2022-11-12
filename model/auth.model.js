@@ -4,7 +4,6 @@ const userSchema = new mongoose.Schema(
   {
     address: {
       type: String,
-      unique: true,
     },
     testScore: {
       type: String,

@@ -5,15 +5,17 @@ dotenv.config();
 
 const _ = require('lodash');
 
-/*
+
 exports.registerController = (req, res) => {
   const { address } = req.body;
+
+  console.log(address)
 
     User.findOne({
       address,
     }).exec((err, user) => {
       if (user) {
-        return res.status(400).send('User with this address exists');
+        return res.send('User with this address exists');
       }
       console.log('this should not run with same address');
 
@@ -23,7 +25,7 @@ exports.registerController = (req, res) => {
 
       users.save((err, user) => {
         if (err) {
-          return res.status(401).send(errorHandler(err));
+          return res.status(401).send(err);
         } else {
           return res.send('Registration Successfully');
         }
@@ -31,51 +33,41 @@ exports.registerController = (req, res) => {
     });
   
 };
-*/
+
 
 exports.loginController = (req, res) => {
   const { address } = req.body;
 
-    // check if user exist
-    User.findOne({
-      address,
-    }).exec((err, user) => {
-      if (err || !user) {
-        const users = new User({
-          address,
-        });
-  
-        users.save((err, user) => {
-          if (err) {
-            return res.status(401).send(errorHandler(err));
-          } else {
-            return res.send('Registration Successfully');
-          }
-        });
+  const users = new User({
+    address,
+  });
+  // check if user exist
+  User.findOne({
+    address,
+  }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).send('User not found');
+    }
+    const token = jwt.sign(
+      {
+        _id: user._id,
+      },
+      `${process.env.JWT_SECRET}`,
+      {
+        expiresIn: '7d', // token valud for 7 days set [] remember me and set it for 30 days
       }
-      // generate a token and send to client
-      const token = jwt.sign(
-        {
-          _id: user._id,
-        },
-        `${process.env.JWT_SECRET}`,
-        {
-          expiresIn: '7d', // token valud for 7 days set [] remember me and set it for 30 days
-        }
-      );
-      const { _id, address, testScore, isTestCompleted, dateCompleted } =
-        user;
-
-      return res.json({
-        token,
-        user: {
-          _id,
-          address,
-          testScore,
-          isTestCompleted,
-          dateCompleted,
-        },
-      });
+    );
+    const { _id, address, testScore, isTestCompleted, dateCompleted } = user;
+    
+    return res.json({
+      token,
+      user: {
+        _id,
+        address,
+        testScore,
+        isTestCompleted,
+        dateCompleted,
+      },
     });
-  
-};
+  });
+}

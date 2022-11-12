@@ -17,7 +17,6 @@ exports.readController = (req, res) => {
 
 exports.updateController = (req, res) => {
   const {
-    address,
     _id,
     testScore,
     isTestCompleted,
@@ -30,7 +29,6 @@ exports.updateController = (req, res) => {
         error: 'User not found',
       });
     }
-    user.address = address;
     user.testScore = testScore;
     user.isTestCompleted = isTestCompleted;
     user.dateCompleted = dateCompleted;
