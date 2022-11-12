@@ -5,6 +5,7 @@ module.exports = () => {
     const connectionParams = {
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        writeConcern: { w: 'majority', j: true, wtimeout: 1000 }
     };
     try {
         mongoose.connect(process.env.DB, connectionParams);
