@@ -8,6 +8,9 @@ const userSchema = new mongoose.Schema(
     testScore: {
       type: String,
     },
+    testScoreB: {
+      type: String,
+    },
     isTestCompleted: {
       type: String,
       default: 'false',

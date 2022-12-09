@@ -57,14 +57,14 @@ exports.loginController = (req, res) => {
         expiresIn: '7d', // token valud for 7 days set [] remember me and set it for 30 days
       }
     );
-    const { _id, address, testScore, isTestCompleted, dateCompleted } = user;
-    
+    const { _id, address, testScore, testScoreB, isTestCompleted, dateCompleted } = user;
     return res.json({
       token,
       user: {
         _id,
         address,
         testScore,
+        testScoreB,
         isTestCompleted,
         dateCompleted,
       },

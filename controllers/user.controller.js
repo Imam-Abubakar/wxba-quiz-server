@@ -19,6 +19,7 @@ exports.updateController = (req, res) => {
   const {
     _id,
     testScore,
+    testScoreB,
     isTestCompleted,
     dateCompleted,
   } = req.body;
@@ -30,6 +31,7 @@ exports.updateController = (req, res) => {
       });
     }
     user.testScore = testScore;
+    user.testScoreB = testScoreB;
     user.isTestCompleted = isTestCompleted;
     user.dateCompleted = dateCompleted;
     user.save((err, updatedUser) => {
