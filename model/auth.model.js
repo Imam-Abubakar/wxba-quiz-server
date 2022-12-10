@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema(
     dateCompleted: {
       type: String,
     },
+    dateCompletedB: {
+      type: String,
+    },
   },
   {
     timestamps: true,
