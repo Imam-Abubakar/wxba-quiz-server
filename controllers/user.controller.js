@@ -20,9 +20,11 @@ exports.updateController = (req, res) => {
     _id,
     testScore,
     testScoreB,
+    testScoreC,
     isTestCompleted,
     dateCompleted,
     dateCompletedB,
+    dateCompletedC,
   } = req.body;
   User.findOne({ _id: _id }, (err, user) => {
     if (err || !user) {
@@ -33,9 +35,11 @@ exports.updateController = (req, res) => {
     }
     user.testScore = testScore;
     user.testScoreB = testScoreB;
+    user.testScoreC = testScoreC;
     user.isTestCompleted = isTestCompleted;
     user.dateCompleted = dateCompleted;
     user.dateCompletedB = dateCompletedB;
+    user.dateCompletedC = dateCompletedC;
     user.save((err, updatedUser) => {
       if (err) {
         console.log('USER UPDATE ERROR', err);

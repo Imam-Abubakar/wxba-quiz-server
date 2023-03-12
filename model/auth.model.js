@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema(
     testScoreB: {
       type: String,
     },
+    testScoreC: {
+      type: String,
+    },
     isTestCompleted: {
       type: String,
       default: 'false',
@@ -19,6 +22,9 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     dateCompletedB: {
+      type: String,
+    },
+    dateCompletedC: {
       type: String,
     },
   },
