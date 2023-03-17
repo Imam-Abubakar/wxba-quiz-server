@@ -8,10 +8,10 @@ const userSchema = new mongoose.Schema(
     testScore: {
       type: String,
     },
-    testScoreB: {
+    web3Assessment: {
       type: String,
     },
-    testScoreC: {
+    forexAssessment: {
       type: String,
     },
     isTestCompleted: {
@@ -21,10 +21,10 @@ const userSchema = new mongoose.Schema(
     dateCompleted: {
       type: String,
     },
-    dateCompletedB: {
+    dateCompletedWeb3: {
       type: String,
     },
-    dateCompletedC: {
+    dateCompletedForex: {
       type: String,
     },
   },

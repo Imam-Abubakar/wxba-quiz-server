@@ -19,12 +19,12 @@ exports.updateController = (req, res) => {
   const {
     _id,
     testScore,
-    testScoreB,
-    testScoreC,
+   web3Assessment,
+    forexAssessment,
     isTestCompleted,
     dateCompleted,
-    dateCompletedB,
-    dateCompletedC,
+    dateCompletedWeb3,
+    dateCompletedForex,
   } = req.body;
   User.findOne({ _id: _id }, (err, user) => {
     if (err || !user) {
@@ -34,12 +34,12 @@ exports.updateController = (req, res) => {
       });
     }
     user.testScore = testScore;
-    user.testScoreB = testScoreB;
-    user.testScoreC = testScoreC;
+    user.web3Assessment = web3Assessment;
+    user.forexAssessment = forexAssessment;
     user.isTestCompleted = isTestCompleted;
     user.dateCompleted = dateCompleted;
-    user.dateCompletedB = dateCompletedB;
-    user.dateCompletedC = dateCompletedC;
+    user.dateCompletedWeb3 = dateCompletedWeb3;
+    user.dateCompletedForex = dateCompletedForex;
     user.save((err, updatedUser) => {
       if (err) {
         console.log('USER UPDATE ERROR', err);
@@ -52,4 +52,5 @@ exports.updateController = (req, res) => {
     });
   });
 };
+
 
