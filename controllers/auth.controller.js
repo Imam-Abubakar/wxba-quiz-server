@@ -11,27 +11,27 @@ exports.registerController = (req, res) => {
 
   console.log(address)
 
-    User.findOne({
+  User.findOne({
+    address,
+  }).exec((err, user) => {
+    if (user) {
+      return res.send('User with this address exists');
+    }
+    console.log('this should not run with same address');
+
+    const users = new User({
       address,
-    }).exec((err, user) => {
-      if (user) {
-        return res.send('User with this address exists');
-      }
-      console.log('this should not run with same address');
-
-      const users = new User({
-        address,
-      });
-
-      users.save((err, user) => {
-        if (err) {
-          return res.status(401).send(err);
-        } else {
-          return res.send('Registration Successfully');
-        }
-      });
     });
-  
+
+    users.save((err, user) => {
+      if (err) {
+        return res.status(401).send(err);
+      } else {
+        return res.send('Registration Successfully');
+      }
+    });
+  });
+
 };
 
 
@@ -57,19 +57,25 @@ exports.loginController = (req, res) => {
         expiresIn: '7d', // token valud for 7 days set [] remember me and set it for 30 days
       }
     );
-    const { _id, address, testScore, testScoreB, testScoreC, isTestCompleted, dateCompleted, dateCompletedB, dateCompletedC } = user;
+    const { _id, address, testScore,
+      web3Assessment,
+      forexAssessment,
+      isTestCompleted,
+      dateCompleted,
+      dateCompletedWeb3,
+      dateCompletedForex, } = user;
     return res.json({
       token,
       user: {
         _id,
         address,
         testScore,
-        testScoreB,
-        testScoreC,
+        web3Assessment,
+        forexAssessment,
         isTestCompleted,
         dateCompleted,
-        dateCompletedB,
-        dateCompletedC
+        dateCompletedWeb3,
+        dateCompletedForex,
       },
     });
   });
