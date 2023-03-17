@@ -12,6 +12,6 @@ const {
 router.get('/user/:id', readController);
 router.put('/user/update', updateController);
 router.put('/user/update/web3', updateWeb3Test);
-router.put('/user/update/forex', updateForex);
+router.put('/user/update/forex', updateForexTest);
 
 module.exports = router;
