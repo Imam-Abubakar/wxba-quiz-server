@@ -14,6 +14,14 @@ const userSchema = new mongoose.Schema(
     forexAssessment: {
       type: String,
     },
+    isWeb3TestCompleted: {
+      type: String,
+      default: 'false',
+    },
+    isForexTestCompleted: {
+      type: String,
+      default: 'false',
+    },
     isTestCompleted: {
       type: String,
       default: 'false',
